@@ -1,7 +1,7 @@
 ARG NODE_VER=20
 FROM node:$NODE_VER-alpine AS base
 
-USER node
+# USER node
 WORKDIR /home/node
 
 # 1. Install dependencies only when needed
@@ -10,7 +10,7 @@ FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 USER root
 RUN apk add --no-cache libc6-compat
-USER node
+# USER node
 
 # Install dependencies based on the preferred package manager
 COPY --chown=node:node package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
